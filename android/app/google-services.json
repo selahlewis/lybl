@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "873685717403",
+    "project_id": "lybl-a7f51",
+    "storage_bucket": "lybl-a7f51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873685717403:android:2de5c624c6c39080f3513e",
+        "android_client_info": {
+          "package_name": "com.example.lybl_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873685717403-465upcahrlqjbd3gtcpvnuj80gl5qvqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUEOM-7qCU912bxsYr781Tqx1Q-vhelfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873685717403-465upcahrlqjbd3gtcpvnuj80gl5qvqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873685717403:android:27ee15a471eeb7d0f3513e",
+        "android_client_info": {
+          "package_name": "com.fredrikbogg.tinder_app_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873685717403-465upcahrlqjbd3gtcpvnuj80gl5qvqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUEOM-7qCU912bxsYr781Tqx1Q-vhelfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873685717403-465upcahrlqjbd3gtcpvnuj80gl5qvqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
