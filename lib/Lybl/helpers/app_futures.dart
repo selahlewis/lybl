@@ -286,6 +286,38 @@ Future<EventObject> fetchAllCourses(String token) async {
   }
 }
 
+Future<EventObject> fetchRecentCourses(String token) async {
+  var currentUrl = Uri.parse(APIConstants.API_BASE_URL +
+      APIOperations.getRecentCourses +
+      '&wstoken=' +
+      token);
+  print(currentUrl);
+  try {
+    final response = await http.get(currentUrl);
+    print(currentUrl);
+    if (response != null) {
+      if (response.statusCode == APIResponseCode.SC_OK &&
+          response.body != null) {
+        final responseJson = await json.decode(response.body);
+        var lessonList = [];
+        lessonList = responseJson['courses'];
+        print(lessonList[0]["overviewfiles"][0]["fileurl"]);
+        if (lessonList != null) {
+          return new EventObject(
+              id: EventConstants.REQUEST_SUCCESSFUL, object: lessonList);
+        } else
+          return new EventObject(
+              id: EventConstants.REQUEST_UN_SUCCESSFUL, object: null);
+      } else
+        return new EventObject(
+            id: EventConstants.REQUEST_UN_SUCCESSFUL, object: null);
+    } else
+      return new EventObject(object: null);
+  } catch (Exception) {
+    return EventObject(object: null);
+  }
+}
+
 Future<EventObject> fetchCategories(String token) async {
   var currentUrl = Uri.parse(APIConstants.API_BASE_URL +
       APIOperations.getLessons +

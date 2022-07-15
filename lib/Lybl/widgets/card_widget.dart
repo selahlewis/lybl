@@ -87,7 +87,7 @@ class CardCourses extends StatelessWidget {
                 ),
                 SizedBox(width: 80),
                 Text(
-                  'Continue Therapy',
+                  'View Course',
                 ),
               ],
             ),
