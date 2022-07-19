@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lybl_mobile/Helpers/MagicStrings.dart';
-import 'package:lybl_mobile/Lybl/ui/category_screen.dart';
+import 'package:lybl_mobile/Lybl/ui/continue_courses.dart';
 import 'package:lybl_mobile/Lybl/ui/home_screen.dart';
 import 'package:lybl_mobile/Screens/chats_screen.dart';
 import 'package:lybl_mobile/Screens/explore_page.dart';
@@ -9,20 +9,21 @@ import 'package:lybl_mobile/Screens/like_screen.dart';
 import 'package:lybl_mobile/util/constants.dart';
 
 import '../LevelUp/level_up_home.dart';
+import 'home.dart';
 
-class Home extends StatefulWidget {
+class RecentLessons extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => HomeState();
+  State<StatefulWidget> createState() => RecentLessonsState();
 }
 
-class HomeState extends State<Home> {
-  int selected = 1;
+class RecentLessonsState extends State<RecentLessons> {
+  int selected = 2;
 
   static List<Widget> _widgetOptions = <Widget>[
     ExplorePage(),
     //LikesScreen(),
     ChatsScreen(),
-    CategoryScreen(),
+    LevelHome(),
   ];
 
   navigateBottomBar(int value) {
@@ -127,7 +128,8 @@ class HomeState extends State<Home> {
               BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
               //  BottomNavigationBarItem(icon: Icon(Icons.local_florist), label: ''),
               BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.equalizer), label: ''),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.arrow_upward), label: ''),
             ],
             currentIndex: selected,
             onTap: navigateBottomBar,

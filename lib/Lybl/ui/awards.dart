@@ -1,36 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lybl_mobile/Helpers/MagicStrings.dart';
-import 'package:lybl_mobile/Lybl/ui/category_screen.dart';
-import 'package:lybl_mobile/Lybl/ui/home_screen.dart';
-import 'package:lybl_mobile/Screens/chats_screen.dart';
-import 'package:lybl_mobile/Screens/explore_page.dart';
-import 'package:lybl_mobile/Screens/explore_screen.dart';
-import 'package:lybl_mobile/Screens/like_screen.dart';
 import 'package:lybl_mobile/util/constants.dart';
 
-import '../LevelUp/level_up_home.dart';
+import '../../Screens/Home/home.dart';
+import '../../Screens/LevelUp/level_up_home.dart';
 
-class Home extends StatefulWidget {
+class AwardsScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => HomeState();
+  State<StatefulWidget> createState() => AwardsScreenState();
 }
 
-class HomeState extends State<Home> {
-  int selected = 1;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    ExplorePage(),
-    //LikesScreen(),
-    ChatsScreen(),
-    CategoryScreen(),
-  ];
-
-  navigateBottomBar(int value) {
-    setState(() {
-      selected = value;
-    });
-  }
-
+class AwardsScreenState extends State<AwardsScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -115,27 +95,7 @@ class HomeState extends State<Home> {
           ),
         ),
         body: Container(
-          color: Colors.red,
-          child: _widgetOptions.elementAt(selected),
-        ),
-        bottomNavigationBar: Container(
-          color: Colors.red,
-          child: BottomNavigationBar(
-            backgroundColor: ColorCodes.mainColorDark,
-            type: BottomNavigationBarType.fixed,
-            items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-              //  BottomNavigationBarItem(icon: Icon(Icons.local_florist), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.equalizer), label: ''),
-            ],
-            currentIndex: selected,
-            onTap: navigateBottomBar,
-            selectedItemColor: ColorCodes.mainColorLight,
-            unselectedItemColor: Colors.white,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-          ),
+          child: Text('You have no awards...yet!', textAlign: TextAlign.center),
         ),
       ),
     );

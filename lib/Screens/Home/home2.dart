@@ -22,7 +22,7 @@ class LessonsState extends State<Lessons> {
     ExplorePage(),
     //LikesScreen(),
     ChatsScreen(),
-    HomeScreen(),
+    HomeScreen(1),
   ];
 
   navigateBottomBar(int value) {
@@ -55,6 +55,22 @@ class LessonsState extends State<Lessons> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(right: 5),
+                        child: Icon(Icons.home),
+                      ),
+                      Text('Home')
+                    ],
+                  ),
+                  onTap: () {
+                    //return LevelHome.route();
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Home()));
+                  },
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 5),
                         child: Icon(Icons.personal_video),
                       ),
                       Text('My Profile')
@@ -78,22 +94,6 @@ class LessonsState extends State<Lessons> {
                     //return LevelHome.route();
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => LevelHome()));
-                  },
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 5),
-                        child: Icon(Icons.home),
-                      ),
-                      Text('Home')
-                    ],
-                  ),
-                  onTap: () {
-                    //return LevelHome.route();
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => Home()));
                   },
                 ),
                 ListTile(

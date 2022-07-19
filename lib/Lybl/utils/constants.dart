@@ -50,7 +50,7 @@ class APIOperations {
       "webservice/rest/server.php?wsfunction=core_course_get_courses_by_field&field=category&value=1&moodlewsrestformat=json";
 
   static const String getRecentCourses =
-      "webservice/rest/server.php?wsfunction=core_course_get_recent_courses&moodlewsrestformat=json";
+      "webservice/rest/server.php?wsfunction=course_get_user_courses&field=category&value=1&moodlewsrestformat=json";
 }
 
 class EventConstants {

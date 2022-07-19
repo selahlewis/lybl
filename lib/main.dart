@@ -1,10 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lybl_mobile/Lybl/models/lesson.dart';
+import 'package:lybl_mobile/Lybl/ui/awards.dart';
+import 'package:lybl_mobile/Lybl/ui/category_screen.dart';
+import 'package:lybl_mobile/Lybl/ui/continue_courses.dart';
 import 'package:lybl_mobile/Models/Questions.dart';
 import 'package:lybl_mobile/Screens/Account/dating_attributes.dart';
 import 'package:lybl_mobile/Screens/Account/profile_details.dart';
 import 'package:lybl_mobile/Screens/Home/home2.dart';
+import 'package:lybl_mobile/Screens/Home/recent_courses.dart';
 import 'package:lybl_mobile/Screens/Profile/Profile.dart';
 import 'package:lybl_mobile/Screens/Profile/Upload/UploadUI.dart';
 import 'package:lybl_mobile/Screens/Questions/MultiSelect/MultiSelect5.dart';
@@ -200,10 +204,25 @@ class ProviderSetupState extends State<ProviderSetup> {
                   child: Lessons(),
                   type: PageTransitionType.rightToLeft,
                   duration: Duration(milliseconds: 100));
+            case RouteNames.Recent:
+              return PageTransition(
+                  child: RecentLessons(),
+                  type: PageTransitionType.leftToRight,
+                  duration: Duration(milliseconds: 100));
+            case RouteNames.Categories:
+              return PageTransition(
+                  child: CategoryScreen(),
+                  type: PageTransitionType.leftToRight,
+                  duration: Duration(milliseconds: 100));
             case RouteNames.Attributes:
               return PageTransition(
                   child: DatingAttributes(),
                   type: PageTransitionType.rightToLeft,
+                  duration: Duration(milliseconds: 100));
+            case RouteNames.Awards:
+              return PageTransition(
+                  child: AwardsScreen(),
+                  type: PageTransitionType.rightToLeftWithFade,
                   duration: Duration(milliseconds: 100));
             case RouteNames.UPLOAD:
               return PageTransition(

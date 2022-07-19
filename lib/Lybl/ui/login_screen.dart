@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:lybl_mobile/Lybl/ui/category_screen.dart';
 import 'package:lybl_mobile/Lybl/ui/home_screen.dart';
 import 'package:lybl_mobile/Lybl/widgets/progress_dialog.dart';
 import 'package:lybl_mobile/Lybl/helpers/app_futures.dart';
@@ -295,7 +296,7 @@ class LoginScreenState extends State<LoginScreen> {
   void _goToStartScreen() {
     Navigator.pushReplacement(
       context,
-      new MaterialPageRoute(builder: (context) => new HomeScreen()),
+      new MaterialPageRoute(builder: (context) => new CategoryScreen()),
     );
   }
 

@@ -320,7 +320,7 @@ Future<EventObject> fetchRecentCourses(String token) async {
 
 Future<EventObject> fetchCategories(String token) async {
   var currentUrl = Uri.parse(APIConstants.API_BASE_URL +
-      APIOperations.getLessons +
+      APIOperations.getCategories +
       '&wstoken=' +
       token);
   try {
@@ -373,10 +373,12 @@ Future<EventObject> fetchSingleLesson(String token, int lessonid) async {
   }
 }
 
-Future<EventObject> fetchCourses(String token) async {
+Future<EventObject> fetchCourses(String token, int courseId) async {
   var currentUrl = Uri.parse(APIConstants.API_BASE_URL +
       APIOperations.getCourses +
-      '&wstoken=' +
+      "&value=" +
+      courseId.toString() +
+      '&moodlewsrestformat=json&wstoken=' +
       token);
 
   try {

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../Screens/Home/home2.dart';
+import '../ui/category_screen.dart';
 
 void pushHomeScreen(BuildContext context) {
   Navigator.of(context).pushAndRemoveUntil(
     PageTransition(
-      child: HomeScreen(),
+      child: CategoryScreen(),
       type: PageTransitionType.bottomToTop,
       duration: Duration(milliseconds: 800),
       curve: Curves.bounceOut,

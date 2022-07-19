@@ -17,6 +17,9 @@ class RouteNames {
   static const String UPLOAD = "upload";
   static const String ChatScreen = "chat_screen";
   static const String Lessons = "home2";
+  static const String Recent = "recent";
+  static const String Awards = "award";
+  static const String Categories = "category";
 }
 
 class SharedPrefNames {

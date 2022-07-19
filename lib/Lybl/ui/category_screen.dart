@@ -7,32 +7,26 @@ import 'package:lybl_mobile/Lybl/models/base/EventObject.dart';
 import 'package:lybl_mobile/Lybl/models/User1.dart';
 import 'package:lybl_mobile/Lybl/ui/breakdown_screen.dart';
 import 'package:lybl_mobile/Lybl/ui/courses_screen.dart';
-import 'package:lybl_mobile/Lybl/ui/views/nav_drawer.dart';
 import 'package:lybl_mobile/Lybl/utils/app_shared_preferences.dart';
 import 'package:lybl_mobile/Lybl/utils/constants.dart';
-import 'package:lybl_mobile/Lybl/utils/themes.dart';
-import 'package:html/parser.dart' as parser;
 import 'package:lybl_mobile/Lybl/widgets/card_widget.dart';
 import 'package:lybl_mobile/Lybl/widgets/progress_widget.dart';
 
-class RecentCourseScreen extends StatefulWidget {
+class CategoryScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return RecentCourseScreenState();
+    return CategoryScreenState();
   }
 }
 
-class RecentCourseScreenState extends State<RecentCourseScreen> {
+class CategoryScreenState extends State<CategoryScreen> {
   final GlobalKey<ScaffoldState> globalKey = new GlobalKey<ScaffoldState>();
   User1 user;
   String token = "";
   //BuildContext _context;
-  List lessons;
-  ProgressWidget progressWidget = ProgressWidget(
-    text: '',
-  );
-  int lessonid;
-  static int lessonids = 0;
+  List categories = [];
+  int categoryid;
+  static int categoryids = 0;
   static String pageTitle = "";
   int pageNum;
 
@@ -48,8 +42,8 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
     //_context = context;
     if (user == null) {
       initUserProfile();
-      lessons = [];
-      _getLessons();
+      categories = [];
+      _getCategories();
     }
 
     return Scaffold(
@@ -63,7 +57,6 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
           Container(
             child: mainBody(),
           ),
-          progressWidget
         ]),
       ),
     );
@@ -96,14 +89,14 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
   Widget mainBody() {
     return new ListView.separated(
       separatorBuilder: (BuildContext context, int index) => const Divider(),
-      itemCount: lessons.length,
+      itemCount: categories.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            // lessonids = lessons[index]['id'];
-            pageTitle = lessons[index]['shortname'];
+            // categoryids = categorys[index]['id'];
+            pageTitle = categories[index].name;
 
-            _getFirstPage(lessons[index]['id']);
+            navigateToCourses(categoryid, index);
           },
           child: Container(
             margin: EdgeInsets.all(10),
@@ -115,11 +108,9 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
               child: Column(
                 children: [
                   CardCourses(
-                    image: lessons[index]["overviewfiles"][0]["fileurl"] +
-                        "?token=" +
-                        token,
+                    image: 'assets/images/therapy.jpg',
                     color: Colors.white,
-                    title: lessons[index]["shortname"],
+                    title: categories[index].name,
                     hours: "",
                     progress: "50%",
                     percentage: 0.5,
@@ -145,10 +136,8 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
           final item = levels[index];
           return GestureDetector(
             onTap: () {
-              //  lessonids = item['id'];
-              pageTitle = item['shortname'];
-
-              _getFirstPage(item['id']);
+              //  categoryids = item['id'];
+              navigateToCourses(categoryid, index);
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 16),
@@ -160,7 +149,7 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
                       padding: const EdgeInsets.all(5),
                       child: Center(
                         child: Text(
-                          item["name"],
+                          item.name,
                           style: GoogleFonts.roboto(
                             fontSize: 16,
                           ),
@@ -189,20 +178,19 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
     );
   }
 
-//Get the lessons to display on screen in a grid view.
-  void _getLessons() async {
+//Get the categorys to display on screen in a grid view.
+  void _getCategories() async {
     token =
         await AppSharedPreferences.getPrefs(SharedPreferenceKeys.USER_TOKEN);
-    EventObject eventObject = await fetchRecentCourses(token);
+    EventObject eventObject = await fetchCategories(token);
     switch (eventObject.id) {
       case EventConstants.REQUEST_SUCCESSFUL:
         {
           setState(() {
-            progressWidget.hideProgress();
-            lessons = [];
-            lessons = eventObject.object;
+            categories = [];
+            categories = eventObject.object;
             //  print(parser
-            //     .parse(lessons[0]['intro'])
+            //     .parse(categorys[0]['intro'])
             //     .getElementsByTagName('img')[0]
             //    .attributes['src']);
           });
@@ -212,9 +200,8 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
         {
           setState(() {
             ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
-              content: new Text("Unable to connect please try again!"),
+              content: new Text("Unable to connect, please try again!"),
             ));
-            progressWidget.hideProgress();
           });
         }
         break;
@@ -222,17 +209,15 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
   }
 
 //Because moodle's first page number may not always start at 0 we need to always get the first page id.
-  void _getFirstPage(int lessonid) async {
+  /* void _getFirstPage(int categoryid) async {
     token =
         await AppSharedPreferences.getPrefs(SharedPreferenceKeys.USER_TOKEN);
-    EventObject eventObject = await fetchAllPages(token, lessonid);
+    EventObject eventObject = await fetchCourses(token, 19);
     switch (eventObject.id) {
       case EventConstants.REQUEST_SUCCESSFUL:
         {
           setState(() {
-            pageNum = eventObject.object;
-            navigateToBreakDown();
-            //navigateToCourses(lessonid, pageNum);
+            navigateToCourses(categoryid, pageNum);
           });
         }
         break;
@@ -248,10 +233,10 @@ class RecentCourseScreenState extends State<RecentCourseScreen> {
         break;
     }
   }
-
-  void navigateToCourses(int lessonid, int firstPage) async {
+*/
+  void navigateToCourses(int categoryid, int firstPage) async {
     await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return CoursesScreen(lessonid, firstPage, '');
+      return CoursesScreen(categoryid, firstPage, '');
     }));
   }
 

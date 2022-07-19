@@ -16,16 +16,22 @@ import 'package:lybl_mobile/Lybl/widgets/card_widget.dart';
 import 'package:lybl_mobile/Lybl/widgets/progress_widget.dart';
 
 class HomeScreen extends StatefulWidget {
+  int courseid;
+
+  HomeScreen(this.courseid);
+
   @override
   State<StatefulWidget> createState() {
-    return HomeScreenState();
+    return HomeScreenState(this.courseid);
   }
 }
 
 class HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> globalKey = new GlobalKey<ScaffoldState>();
+  HomeScreenState(this.courseid);
   User1 user;
   String token = "";
+  int courseid;
   //BuildContext _context;
   List lessons;
   ProgressWidget progressWidget = ProgressWidget(

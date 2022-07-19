@@ -30,6 +30,22 @@ class _LevelHomeState extends State<LevelHome> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(right: 5),
+                      child: Icon(Icons.home),
+                    ),
+                    Text('Home')
+                  ],
+                ),
+                onTap: () {
+                  //return LevelHome.route();
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Home()));
+                },
+              ),
+              ListTile(
+                title: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 5),
                       child: Icon(Icons.personal_video),
                     ),
                     Text('My Profile')
@@ -53,22 +69,6 @@ class _LevelHomeState extends State<LevelHome> {
                   //return LevelHome.route();
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => LevelHome()));
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: 5),
-                      child: Icon(Icons.home),
-                    ),
-                    Text('Home')
-                  ],
-                ),
-                onTap: () {
-                  //return LevelHome.route();
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Home()));
                 },
               ),
               ListTile(
@@ -102,9 +102,9 @@ class _LevelHomeState extends State<LevelHome> {
       'assets/images/happy_people.jpg',
     ];
     List navList = [
-      '',
-      '',
       'home2',
+      '',
+      'category',
       '',
     ];
 
