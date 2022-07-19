@@ -1,6 +1,6 @@
 # lybl_mobile
 
-A new Flutter project.
+A new Flutter project for Cenedex Solutions.
 
 ## Getting Started
 
